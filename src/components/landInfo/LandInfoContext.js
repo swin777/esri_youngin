@@ -23,33 +23,58 @@ const LandInfoProvider = (props) => {
     }
 
     const restApi = {
+
         addrLinkApi: (keyword) => {
             return serverCall(`/jusoGoKr/addrlink/addrLinkApi.do`, 'post', null, {'keyword':keyword, 'confmKey':confmKey, pageNo:1, countPerPage:50, 'resultType':'json' })
         },
 
-        // ladfrlService: (pnu) => {
-        //     return serverCall(`/dataGoKR2/1611000/nsdi/eios/LadfrlService/ladfrlList.xml?`, 'get', null, {'pnu':pnu, 'key':key, numOfRows:50})
-        // }, 
-        
         ladfrlService: (pnu) => {
-            return serverCall(`/dataGoKR2/bsns/api/selectApiData.do`, 'get', null, {'pnu':pnu, 'key':key, 'target':'totInfo', 'type':'attr'})
-        }, 
+            return serverCall(`/dataGoKR/1611000/nsdi/eios/LadfrlService/ladfrlList.xml?`, 'get', null, {'pnu':pnu, 'ServiceKey':serviceKey, numOfRows:50})
+        },  
 
         getBrBasisOulnInfo: (param) => {
-            return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrBasisOulnInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+            return serverCall(`/dataGoKR/1611000/BldRgstService/getBrBasisOulnInfo?`, 'get', null, {...param, 'ServiceKey':serviceKey, numOfRows:200})
         },
 
         getBrRecapTitleInfo: (param) => {
-            return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrRecapTitleInfo?`, 'get', null, {...param, 'key':key})
+            return serverCall(`/dataGoKR/1611000/BldRgstService/getBrRecapTitleInfo?`, 'get', null, {...param, 'ServiceKey':serviceKey})
         },
 
         getBrTitleInfo: (param) => {
-            return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrTitleInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+            return serverCall(`/dataGoKR/1611000/BldRgstService/getBrTitleInfo?`, 'get', null, {...param, 'ServiceKey':serviceKey, numOfRows:200})
         },
 
         getBrFlrOulnInfo: (param) => {
-            return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrFlrOulnInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+            return serverCall(`/dataGoKR/1611000/BldRgstService/getBrFlrOulnInfo?`, 'get', null, {...param, 'ServiceKey':serviceKey, numOfRows:200})
         }
+
+        // addrLinkApi: (keyword) => {
+        //     return serverCall(`/jusoGoKr/addrlink/addrLinkApi.do`, 'post', null, {'keyword':keyword, 'confmKey':confmKey, pageNo:1, countPerPage:50, 'resultType':'json' })
+        // },
+
+        // // ladfrlService: (pnu) => {
+        // //     return serverCall(`/dataGoKR2/1611000/nsdi/eios/LadfrlService/ladfrlList.xml?`, 'get', null, {'pnu':pnu, 'key':key, numOfRows:50})
+        // // }, 
+        
+        // ladfrlService: (pnu) => {
+        //     return serverCall(`/dataGoKR2/bsns/api/selectApiData.do`, 'get', null, {'pnu':pnu, 'key':key, 'target':'totInfo', 'type':'attr'})
+        // }, 
+
+        // getBrBasisOulnInfo: (param) => {
+        //     return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrBasisOulnInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+        // },
+
+        // getBrRecapTitleInfo: (param) => {
+        //     return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrRecapTitleInfo?`, 'get', null, {...param, 'key':key})
+        // },
+
+        // getBrTitleInfo: (param) => {
+        //     return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrTitleInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+        // },
+
+        // getBrFlrOulnInfo: (param) => {
+        //     return serverCall(`/dataGoKR2/1611000/BldRgstService/getBrFlrOulnInfo?`, 'get', null, {...param, 'key':key, numOfRows:200})
+        // }
     } 
 
     return (

@@ -53,35 +53,35 @@ const Search = () => {
         setLoading(true)
         restApi.ladfrlService(selectAddr.pnu)
         .then(res=>{
-            // let info = xml2Json(res.data)
-            // if(info && info.fields && info.fields.ladfrlVOList){
-            //     setLandInfo(info.fields.ladfrlVOList)
-            // }
-            // setLoading(false)
+            let info = xml2Json(res.data)
+            if(info && info.fields && info.fields.ladfrlVOList){
+                setLandInfo(info.fields.ladfrlVOList)
+            }
+            setLoading(false)
             alert(res.data.totinfo.jibunNm)
         })
         .catch(err=>{setLoading(false); alert('토지검색실패')})
         let bldParam = addressToBldPram(selectAddr)
 
-        // let callArr = [
-        //     await restApi.getBrBasisOulnInfo(bldParam), 
-        //     await restApi.getBrRecapTitleInfo(bldParam), 
-        //     await restApi.getBrTitleInfo(bldParam),
-        //     await restApi.getBrFlrOulnInfo(bldParam),
-        // ]
-        // Promise.allSettled(callArr).then(result => {
-        //     let resBldInfo = {getBrBasisOulnInfo:[], getBrRecapTitleInfo:[], getBrTitleInfo:[], getBrFlrOulnInfo:[]}
-        //     result.forEach(res => {
-        //         if (res.status==='fulfilled') {
-        //             if(res.value && res.value.data){
-        //                 let serviceName = res.value.config.url.split('/dataGoKR/1611000/BldRgstService/')[1].replace('?', '')
-        //                 resBldInfo[serviceName] = Array.isArray(res.value.data.response.body.items.item) ? res.value.data.response.body.items.item : [res.value.data.response.body.items.item]
-        //             }
-        //         }
-        //     })
-        //     setBuildingInfo(resBldInfo)
-        //     setLoading(false)
-        // })
+        let callArr = [
+            await restApi.getBrBasisOulnInfo(bldParam), 
+            await restApi.getBrRecapTitleInfo(bldParam), 
+            await restApi.getBrTitleInfo(bldParam),
+            await restApi.getBrFlrOulnInfo(bldParam),
+        ]
+        Promise.allSettled(callArr).then(result => {
+            let resBldInfo = {getBrBasisOulnInfo:[], getBrRecapTitleInfo:[], getBrTitleInfo:[], getBrFlrOulnInfo:[]}
+            result.forEach(res => {
+                if (res.status==='fulfilled') {
+                    if(res.value && res.value.data){
+                        let serviceName = res.value.config.url.split('/dataGoKR/1611000/BldRgstService/')[1].replace('?', '')
+                        resBldInfo[serviceName] = Array.isArray(res.value.data.response.body.items.item) ? res.value.data.response.body.items.item : [res.value.data.response.body.items.item]
+                    }
+                }
+            })
+            setBuildingInfo(resBldInfo)
+            setLoading(false)
+        })
     }
 
     return (
