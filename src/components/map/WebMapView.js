@@ -54,7 +54,8 @@ export const WebMapView = () => {
             }
           };
         });
-      }
+      },
+      []
     );
     return <div className="webmap" ref={mapRef} />;
 };

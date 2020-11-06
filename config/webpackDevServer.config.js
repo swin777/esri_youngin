@@ -105,13 +105,20 @@ module.exports = function(proxy, allowedHost) {
       '/jusoGoKr': {
         target: 'http://www.juso.go.kr',
         pathRewrite: {'^/jusoGoKr' : ''},
-        secure: false
+        secure: false,
+        logLevel: 'debug'
       },
       '/dataGoKR': {
         target: 'http://apis.data.go.kr',
         pathRewrite: {'^/dataGoKR' : ''},
         secure: false
-      }
+      },
+      // '/dataGoKR2': {
+      //   target: 'http://sat2-op.esrikr.com:3300',
+      //   pathRewrite: {'^/dataGoKR2' : ''},
+      //   secure: false,
+      //   logLevel: 'debug'
+      // }
     },
     before(app, server) {
       // Keep `evalSourceMapMiddleware` and `errorOverlayMiddleware`

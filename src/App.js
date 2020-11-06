@@ -16,15 +16,7 @@ const App = () => {
 
   return (
     <div>
-      <Router history={browserhistory} basename={basename}>
-        <Top/>
-        <Switch>
-          <Route exact path={basename+"/"} component={Home}/>
-          <Route path={basename+"/landInfo"} component={LandInfo}/>
-          <Route path={basename+"/aerialVideo"} component={AerialVideo}/>
-          <Route path={basename+"/dataService"} component={DataService}/>
-        </Switch>
-      </Router> 
+      <LandInfo/>
     </div>
   );
 }
